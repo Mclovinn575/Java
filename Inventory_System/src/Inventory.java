@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Inventory {
 
     private String inventoryName;
-    private ArrayList<Item> inventoryStock = new ArrayList<>();
+    ArrayList<Item> inventoryStock = new ArrayList<>();
 
 
     public Inventory(String nameString)
@@ -49,6 +49,20 @@ public class Inventory {
         }
         return total;
 
+    }
+
+    public int ItemCount()
+    {
+        return this.inventoryStock.size();
+    }
+
+    public void InitializeMasterList()
+    {
+        this.inventoryName = "Master List";
+        this.inventoryStock.add(Item.shirt);
+        this.inventoryStock.add(Item.pants);
+        this.inventoryStock.add(Item.shoes);
+        
 
 
     }

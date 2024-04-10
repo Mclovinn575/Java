@@ -1,47 +1,29 @@
+import java.util.Scanner;
 
 public class App { 
 
-       
 
 
 
     public static void main(String[] args) throws Exception {
+    
+
+        Scanner input = new Scanner(System.in);
+        Inventory userBasket = new Inventory("User Cart");
+        // Initalize Master (Reference) List of all available items 
+       Inventory masterList = new Inventory("Master List");
+       masterList.InitializeMasterList();
+
+        // List out items and prices to user
+        System.out.println("=== Available Items ===");
+        for (int i = 0; i < masterList.inventoryStock.size(); i++) {
+            System.out.println(i+".) "+masterList.inventoryStock.get(i).getItemName()+"|| "+masterList.inventoryStock.get(i).getItemPrice());
+        }
+        System.out.println("\nChoose a number to add to cart: ");
+        int userChoice = input.nextInt();
 
 
-
-
-        // Main code here
-
-        Inventory mainStock = new Inventory("Main Stock");
-
-
-        mainStock.addItem(Item.pants);
-        mainStock.addItem(Item.shoes);
-        mainStock.addItem(Item.shirt);
-        mainStock.addItem(Item.pants);
-
-        // Test out to make sure each inventory keeps its own objects
-        Inventory secondInventory = new Inventory("Secondary Inventory");
-        secondInventory.addItem(Item.shoes);
-
-
-
-
-        mainStock.getItems();
-        secondInventory.getItems();
-
-        System.out.println("\nThe total of Main Stock is: "+mainStock.checkOut());
-        System.out.println("\nThe total of Secondary Stock is: "+secondInventory.checkOut());
-
-
-
-
-
-
-
-
-
-
+        
 
     }
 }
