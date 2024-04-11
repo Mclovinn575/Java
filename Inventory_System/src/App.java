@@ -18,6 +18,10 @@ public class App {
               int userChoice;
 
         do {
+
+            // Clean up screen each update.
+            ClearScreen();
+
             // List out items and prices to user
             System.out.println("=== Available Items ===");
             for (int i = 0; i < masterList.inventoryStock.size(); i++) {
@@ -57,13 +61,23 @@ public class App {
       
 
         // Finalize user basket
+        ClearScreen();
         userBasket.checkOut();
-        
 
+        
+// Floats need to be truncated to 2 digits past the decimal. < 0.00 > for prices. ^^
 
 
 
         input.close();
 
+    }
+
+
+
+
+    public static void ClearScreen()
+    {
+        System.out.print("\033\143");
     }
 }

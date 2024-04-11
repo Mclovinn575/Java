@@ -51,7 +51,7 @@ public class Inventory {
 
         }
 
-        System.out.println("== Current Tax Rate : "+salesTax+" ===");
+        System.out.println("== Current Tax Rate : "+salesTax+" ===\n");
         System.out.println("Cart Total : "+total);
 
     }
