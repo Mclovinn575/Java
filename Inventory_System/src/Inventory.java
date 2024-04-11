@@ -43,13 +43,23 @@ public class Inventory {
 
     public void checkOut()
     {
+        double itemPrice;
+        double itemTax;
         double total = 0.00;
+
+
         for (Item item : inventoryStock) {
 
-            total = total + item.getItemPrice();
-            total = (total * salesTax) + total;
+            itemPrice = item.getItemPrice();
+            itemTax = itemPrice * salesTax;
+            double itemTotal = itemPrice + itemTax;
+            total += itemTotal;
+             
 
         }
+
+        // System.out.println(total);
+        total = Math.floor(total * 100) / 100;
 
         System.out.println("== Current Tax Rate : "+salesTax+" ===\n");
         System.out.println("Cart Total : "+total);
@@ -63,6 +73,7 @@ public class Inventory {
 
                 total = total + item.getItemPrice();
             }
+
             return total;
 
         }
