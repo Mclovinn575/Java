@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public class Inventory {
 
     private String inventoryName;
+    public double salesTax = 0.07;
     ArrayList<Item> inventoryStock = new ArrayList<>();
 
 
@@ -40,16 +41,31 @@ public class Inventory {
         System.out.println(this.inventoryName);
     }
 
-    public double checkOut()
+    public void checkOut()
     {
         double total = 0.00;
         for (Item item : inventoryStock) {
 
             total = total + item.getItemPrice();
+            total = (total * salesTax) + total;
+
         }
-        return total;
+
+        System.out.println("== Current Tax Rate : "+salesTax+" ===");
+        System.out.println("Cart Total : "+total);
 
     }
+
+    public double TotalAmt()
+        {
+            double total = 0.00;
+            for (Item item : inventoryStock) {
+
+                total = total + item.getItemPrice();
+            }
+            return total;
+
+        }
 
     public int ItemCount()
     {

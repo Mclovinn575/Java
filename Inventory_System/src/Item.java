@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+
 
 public class Item {
 
@@ -31,12 +30,14 @@ public class Item {
         return this.itemDescription;
     }
 
+
+
    
 
     // Create Items to use
-   static Item shirt = new Item("Shirt", "A piece of clothing worn to protect the upper torso. Said to come in various fashions.", 5.00);
-   static Item pants = new Item("Pants", "A piece of clothing worn to protect the lower extremeties. Comes in a variety of materials.", 10.00);
-   static Item shoes = new Item("Shoes", "Worn on the feet, this type of clothing provides protection to a persons feet and soles.", 8.00);
+   static Item shirt = new Item("Shirt", "A piece of clothing worn to protect the upper torso. Said to come in various fashions.", 5.99);
+   static Item pants = new Item("Pants", "A piece of clothing worn to protect the lower extremeties. Comes in a variety of materials.", 10.99);
+   static Item shoes = new Item("Shoes", "Worn on the feet, this type of clothing provides protection to a persons feet and soles.", 8.99);
 
 
     
