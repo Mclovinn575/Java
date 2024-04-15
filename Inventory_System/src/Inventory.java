@@ -59,6 +59,7 @@ public class Inventory {
         }
 
         // System.out.println(total);
+        // This expression will truncate the total to the '.00' digit.
         total = Math.floor(total * 100) / 100;
 
         System.out.println("== Current Tax Rate : "+salesTax+" ===\n");
@@ -85,13 +86,22 @@ public class Inventory {
 
     public void InitializeMasterList()
     {
+        // Initializes the ArrayList as the master list (reference list for available items)
         this.inventoryName = "Master List";
         this.inventoryStock.add(Item.shirt);
         this.inventoryStock.add(Item.pants);
         this.inventoryStock.add(Item.shoes);
-        
 
+    }
 
+    public void ShowAvailableItems()
+    {
+        // List out items and prices to user
+            System.out.println("=== Available Items ===");
+            for (int i = 0; i < this.inventoryStock.size(); i++) {
+                System.out.println(i+".) "+this.inventoryStock.get(i).getItemName()+"|| "+this.inventoryStock.get(i).getItemPrice());
+            }
+            System.out.println("==============================");
     }
     
 

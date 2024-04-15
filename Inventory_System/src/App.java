@@ -21,19 +21,16 @@ public class App {
 
             // Clean up screen each update.
             ClearScreen();
+            
+            // Display Available items that user can buy
+            masterList.ShowAvailableItems();
 
-            // List out items and prices to user
-            System.out.println("=== Available Items ===");
-            for (int i = 0; i < masterList.inventoryStock.size(); i++) {
-                System.out.println(i+".) "+masterList.inventoryStock.get(i).getItemName()+"|| "+masterList.inventoryStock.get(i).getItemPrice());
-            }
-
-            // Display current number of items in cart
-            // Will update with each addition
+            // Display current number of items in cart, updates with each addition
             System.out.println("\nCurrent # Items : "+ userBasket.inventoryStock.size());
             // Display Total for user per addition
             System.out.println("Pre-Tax Total : "+userBasket.TotalAmt());
 
+            // Allow user to choose item
             System.out.println("\nChoose a number to add to cart: ");
             System.out.println("== Press '99' to checkout ==\n");
             userChoice = input.nextInt();
@@ -65,10 +62,10 @@ public class App {
         userBasket.checkOut();
 
         
-// Floats need to be truncated to 2 digits past the decimal. < 0.00 > for prices. ^^
 
 
-
+ 
+        // Close out input
         input.close();
 
     }
