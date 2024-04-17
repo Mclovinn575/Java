@@ -1,10 +1,7 @@
-import java.awt.Rectangle;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
+import java.awt.FlowLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 public class App {
@@ -14,30 +11,25 @@ public class App {
         // Create 800 x 600 frame
         JFrame frame = new JFrame("Testing Window");
         frame.setSize(800,600);
-        frame.setLayout(null);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 
-        // Create Text Field
-        JTextField textField = new JTextField("Enter Name Here...");
-        textField.setBounds(250, 100, 300, 50);
-        frame.add(textField);
+        // Add text field 20 columns wide
+        JTextField textField = new JTextField(20);
 
-        JLabel label = new JLabel("Who are you?");
-        label.setBounds(250, 200, 300, 50);
-        frame.add(label);
 
-        JButton button = new JButton("Enter");
-        button.setBounds(250, 300, 100, 50);
-        button.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e)
-            {
-                label.setText("Hello "+ textField.getText());
-            }
+        // Add button and actionListener
+        JButton button = new JButton("Enter Name");
+        button.addActionListener(action -> {
+            JOptionPane.showMessageDialog(textField, "Hello "+textField.getText(), "Greetings!", JOptionPane.DEFAULT_OPTION);
+
         });
-        frame.add(button);
 
 
-        
+        // Add components to frame
+        frame.getContentPane().setLayout(new FlowLayout()); 
+        frame.getContentPane().add(button);
+        frame.getContentPane().add(textField);
 
         
 
