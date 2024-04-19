@@ -43,7 +43,7 @@ public class App {
         frame.getContentPane().add(BorderLayout.CENTER, counterLabel);
 
         // Create a button that will hold the 'click' action
-        JButton clickButton = new JButton("CLick Me!");
+        JButton clickButton = new JButton("Click Me!");
         // Add ActionListener Lambda to button to do something when clicked
         clickButton.addActionListener(click -> {
             // When clicked increase counter by 1
