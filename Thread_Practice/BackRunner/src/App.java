@@ -27,48 +27,7 @@ public class App {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         // Set it to the dark side 
         frame.getContentPane().setBackground(Color.black);
-
-
-
-
-        // ====================================================================================================================================
-
-
-        // ___BUTTONS___
-
-        // Housing 
-        JButton house_BuildButton = new JButton("<html>Build a House <br><br> [75 Wood][75 Food] <br> [1 Population]");
-        house_BuildButton.addActionListener(clicked ->{
-            myWorld.buildHouse();
-        });
-        house_BuildButton.setBackground(Color.black);
-        house_BuildButton.setForeground(Color.white);
         
-        // Lumber Mill
-        JButton lumberMill_BuildButton = new JButton("<html>Build a Lumber Mill <br><br> [150 Wood][200 Food] <br>[2 Population] </html>");
-        lumberMill_BuildButton.addActionListener(clicked ->{
-            myWorld.buildLumberMill();
-        });
-        lumberMill_BuildButton.setBackground(Color.black);
-        lumberMill_BuildButton.setForeground(Color.white);
-
-        // Mines
-        JButton mines_BuildButton = new JButton("<html> Build a Mine <br><br> [300 Wood][300 Food] <br>[3 Population] </html>");
-        mines_BuildButton.addActionListener(clicked ->{
-            myWorld.buildMine();
-        });
-        mines_BuildButton.setBackground(Color.black);
-        mines_BuildButton.setForeground(Color.white);
-
-        // Farms
-        JButton farms_BuildButton = new JButton("<html> Build a Farm <br><br> [125 Wood] <br>[2 Population] </html>");
-        farms_BuildButton.addActionListener(clicked ->{
-            myWorld.buildFarm();
-        });
-        farms_BuildButton.setBackground(Color.black);
-        farms_BuildButton.setForeground(Color.white);
-
-
         // ====================================================================================================================================
 
 
@@ -110,21 +69,61 @@ public class App {
         frame.getContentPane().add(minesTotal);
 
 
-        // ___ACTION BUTTONS___
+        // ====================================================================================================================================
+
+
+        // ___BUTTONS___
+
+        // Housing 
+        JButton house_BuildButton = new JButton("<html>Build a House <br><br> [75 Wood][75 Food] <br> [1 Population]");
+        house_BuildButton.addActionListener(clicked ->{
+            myWorld.buildHouse();
+        });
+        house_BuildButton.setBackground(Color.black);
+        house_BuildButton.setForeground(Color.white);
         frame.getContentPane().add(house_BuildButton);
+        
+        // Lumber Mill
+        JButton lumberMill_BuildButton = new JButton("<html>Build a Lumber Mill <br><br> [150 Wood][200 Food] <br>[2 Population] </html>");
+        lumberMill_BuildButton.addActionListener(clicked ->{
+            myWorld.buildLumberMill();
+        });
+        lumberMill_BuildButton.setBackground(Color.black);
+        lumberMill_BuildButton.setForeground(Color.white);
         frame.getContentPane().add(lumberMill_BuildButton);
+
+        // Mines
+        JButton mines_BuildButton = new JButton("<html> Build a Mine <br><br> [300 Wood][300 Food] <br>[3 Population] </html>");
+        mines_BuildButton.addActionListener(clicked ->{
+            myWorld.buildMine();
+        });
+        mines_BuildButton.setBackground(Color.black);
+        mines_BuildButton.setForeground(Color.white);
         frame.getContentPane().add(mines_BuildButton);
+
+        // Farms
+        JButton farms_BuildButton = new JButton("<html> Build a Farm <br><br> [125 Wood] <br>[2 Population] </html>");
+        farms_BuildButton.addActionListener(clicked ->{
+            myWorld.buildFarm();
+        });
+        farms_BuildButton.setBackground(Color.black);
+        farms_BuildButton.setForeground(Color.white);
         frame.getContentPane().add(farms_BuildButton);
+
+
+     
+
+
         
 
 
-        frame.setVisible(true);
 
+        // 'Let them look'
+        frame.setVisible(true);
         DisplayStats(myWorld, populationGUI, foodGUI, woodGUI, stoneGUI, housesTotal, farmsTotal, lumbermillTotal, minesTotal);
 
     
     
-
 
 
     }
