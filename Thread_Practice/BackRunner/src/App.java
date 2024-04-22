@@ -8,7 +8,7 @@ public class App {
     public static void main(String[] args) throws Exception {
         
         // Create world
-        World myWorld = new World("My World", 100, 100, 100);
+        World myWorld = new World("My World", 300, 500, 0);
 
         // Start generating
         Generator resourceGenerator = new Generator("Resource Generator", myWorld);
@@ -30,33 +30,34 @@ public class App {
 
 
         // ====================================================================================================================================
+
+
         // ___BUTTONS___
 
-        // Housing 
-        JButton house_BuildButton = new JButton("<html>Build a House <br><br> (50 Wood) <br> (1 Population)");
-        house_BuildButton.addActionListener(clicked ->{
-            myWorld.buildHouse();
-        });
-        frame.getContentPane().add(house_BuildButton);
-        
-        // Lumber Mill
-        JButton lumberMill_BuildButton = new JButton("<html>Build a Lumber Mill <br><br> (50 Wood) <br>(1 Population) </html>");
-        lumberMill_BuildButton.addActionListener(clicked ->{
-            myWorld.buildLumberMill();
-        });
+            // Housing 
+            JButton house_BuildButton = new JButton("<html>Build a House <br><br> [75 Wood][50 Food] <br> [1 Population]");
+            house_BuildButton.addActionListener(clicked ->{
+                myWorld.buildHouse();
+            });
+            frame.getContentPane().add(house_BuildButton);
+            
+            // Lumber Mill
+            JButton lumberMill_BuildButton = new JButton("<html>Build a Lumber Mill <br><br> [150 Wood][200 Food] <br>[2 Population] </html>");
+            lumberMill_BuildButton.addActionListener(clicked ->{
+                myWorld.buildLumberMill();
+            });
 
-        // Mines
-        JButton mines_BuildButton = new JButton("<html> Build a Mine <br><br> (50 Wood) <br>(1 Population) </html>");
-        mines_BuildButton.addActionListener(clicked ->{
-            myWorld.buildMine();
-        });
+            // Mines
+            JButton mines_BuildButton = new JButton("<html> Build a Mine <br><br> [300 Wood][300 Food] <br>[3 Population] </html>");
+            mines_BuildButton.addActionListener(clicked ->{
+                myWorld.buildMine();
+            });
 
-        // Farms
-        JButton farms_BuildButton = new JButton("<html> Build a Farm <br><br> (50 Wood) <br>(1 Population) </html>");
-        farms_BuildButton.addActionListener(clicked ->{
-            myWorld.buildFarm();
-        });
-
+            // Farms
+            JButton farms_BuildButton = new JButton("<html> Build a Farm <br><br> [125 Wood] <br>[2 Population] </html>");
+            farms_BuildButton.addActionListener(clicked ->{
+                myWorld.buildFarm();
+            });
 
 
         // ====================================================================================================================================
@@ -72,7 +73,7 @@ public class App {
         JLabel foodGUI = new JLabel("Food: "+myWorld.food);
         frame.getContentPane().add(foodGUI);
 
-        JLabel woodGUI = new JLabel("Population: "+myWorld.population);
+        JLabel woodGUI = new JLabel("Wood: "+myWorld.wood);
         frame.getContentPane().add(woodGUI);
 
         JLabel stoneGUI = new JLabel("Stone: "+myWorld.stone);
