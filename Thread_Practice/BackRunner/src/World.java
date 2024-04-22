@@ -44,14 +44,14 @@ public class World {
 
     public void buildHouse()
     {
-        if(this.food >= 50){
+        if(this.food >= 75){
             // Check if enough resources
             if (this.wood >= 75) {
                 // Check if enough workers 
                 if (this.population >= 1) {
                     this.wood-= 75;
                     this.population-=1;
-                    this.food-=50;
+                    this.food-=75;
                     this.houseTotal++;
                     this.population+=4;
                     JOptionPane.showMessageDialog(null, "House Built!");
