@@ -9,17 +9,20 @@ public class App {
 
         // Create the tasks to be run
         MyThread thread = new MyThread(30, "'Counting to 30'");
-        MyThread thread2 = new MyThread(50,"'Counting to 50'");
+        MyThread thread2 = new MyThread(50, "'Counting to 50'");
 
         // Create an Executor Service to launch threads Asynchronously
         ExecutorService executorService = Executors.newFixedThreadPool(2);
+
+        // If class 'extends Thread' with an overridden 'run()' method, call it normally
+        thread2.start();
+        
         
             
 
         
 
         executorService.submit(thread);
-        executorService.submit(thread2);
 
         executorService.shutdown();
 
