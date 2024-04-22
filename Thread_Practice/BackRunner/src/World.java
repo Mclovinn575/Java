@@ -22,13 +22,13 @@ public class World {
     public int houseTotal;
     public int population;
 
-    public World(String worldName, int wood, int stone)
+    public World(String worldName, int food, int wood, int stone)
     {
         this.name = worldName;
 
         this.wood = wood;
         this.stone = stone;
-        this.food = 100;
+        this.food = food;
 
         this.totalBuildings = 0;
 
