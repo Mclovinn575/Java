@@ -20,7 +20,7 @@ public class App {
         
         // Create a window to track 'things'
         JFrame frame = new JFrame();
-        frame.setSize(600,400);
+        frame.setSize(900,600);
         // frame.setLayout(new FlowLayout());
         frame.setLayout(new GridLayout(3,4));
         // Close out program when you hit the 'x'
