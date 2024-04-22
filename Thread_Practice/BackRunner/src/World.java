@@ -53,7 +53,7 @@ public class World {
                     this.population-=1;
                     this.food-=50;
                     this.houseTotal++;
-                    this.population+=3;
+                    this.population+=4;
                     JOptionPane.showMessageDialog(null, "House Built!");
                     
                 }else{
