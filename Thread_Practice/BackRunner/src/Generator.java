@@ -23,8 +23,19 @@ public class Generator extends Thread {
         while (true) {
 
             // Overwrite threads run() method that runs when the thread is started
-            world.wood ++;
-            world.stone++;
+
+            // Generate wood per lumberMill
+            for (int i = 0; i < world.lumbermillTotal; i++) {
+                world.wood++;
+            }
+
+            for (int i = 0; i < world.farmTotal; i++) {
+                world.food++;
+            }
+
+            for (int i = 0; i < world.minesTotal; i++) {
+                world.stone++;
+            }
 
             // Sleep for 1 second
             try {
@@ -34,12 +45,12 @@ public class Generator extends Thread {
             }
             
         }
+    }
 
-
-
-
-
-
+    public String getTaskName()
+    {
+        
+        return this.taskName;
     }
 
 }
