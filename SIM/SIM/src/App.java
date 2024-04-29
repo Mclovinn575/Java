@@ -1,5 +1,3 @@
-import java.util.Scanner;
-import java.util.concurrent.CompletableFuture;
 
 
 public class App {
@@ -34,7 +32,6 @@ public class App {
         // WorldPlane testPlane = new WorldPlane(3, 3);
         // testPlane.displayMap();
 
-        // Character testDummy = new Character();
 
         // Use CompleteableFuture to run class method asynchronously
         // This will only run as long as the program does. It will not keep the program running by itself.

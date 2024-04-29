@@ -43,6 +43,7 @@ public class Menu {
                 deleteCharacter();
                 break;
             case 4:
+                // May become a 'Continue to Game' later
                 input.close();
                 System.exit(0);
                 break;
