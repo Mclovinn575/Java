@@ -19,10 +19,11 @@ public class Character{
 
     }
 
-    public void ageUp()
+    public void ageUp(int maxAge)
     {
+        
         System.out.println("Aging Started...");
-        while (true) {
+        while (this.getAge() < maxAge) {
             this.age++;
             // System.out.println(this.age);
             try {
@@ -32,6 +33,7 @@ public class Character{
             }
             
         }
+        System.out.println("Aging Stopped at "+maxAge);
     }
     public int getAge()
     {

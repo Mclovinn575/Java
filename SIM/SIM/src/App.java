@@ -34,17 +34,14 @@ public class App {
         // Use CompleteableFuture to run class method asynchronously
         // This will only run as long as the program does. It will not keep the program running by itself.
         // A way to wait for the task to finish is to use the .join() command
-        CompletableFuture.runAsync(testDummy::ageUp);
+        CompletableFuture.runAsync(() -> testDummy.ageUp(5));
+
+        while (true) {
+
+            
+        }
         
 
-        // while (true) {
-        //     System.out.println("Current Age: "+testDummy.getAge());
-        //     try {
-        //         Thread.sleep(1000);
-        //     } catch (Exception e) {
-        //         // TODO: handle exception
-        //     }
-        // }
 
 
 
