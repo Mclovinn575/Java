@@ -37,9 +37,25 @@ public class Menu {
                 createCharacter();
                 break;
             case 2:
+                if (this.currentCharacter == null) {
+                    // If there is no current character, let user know
+                    App.clearScreen();
+                    System.out.println("!!! No Current Character !!!\n");
+                    System.out.println("< Press ENTER to continue... >");
+                    System.console().readLine();
+                    mainMenu();
+                }
                 viewCharacterStats();
                 break;
             case 3:
+                if (this.currentCharacter == null) {
+                    // If there is no current character, let user know
+                    App.clearScreen();
+                    System.out.println("!!! No Current Character !!!\n");
+                    System.out.println("< Press ENTER to continue... >");
+                    System.console().readLine();
+                    mainMenu();
+                }
                 deleteCharacter();
                 break;
             case 4:
@@ -61,7 +77,7 @@ public class Menu {
         // Closing handled by garbage collector
         Scanner nameInput = new Scanner(System.in);
 
-        System.out.println("Enter Character Name:");
+        System.out.println("\nEnter Character Name:");
         String characterName = nameInput.nextLine();
         Character newCharacter = new Character();
         newCharacter.setName(characterName);
