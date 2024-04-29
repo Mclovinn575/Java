@@ -11,10 +11,10 @@ public class Character{
 
 
     // Character Blueprint
-    public Character(String characterName)
+    public Character()
     {
 
-        this.characterName = characterName;
+        this.characterName = "None";
 
 
     }
