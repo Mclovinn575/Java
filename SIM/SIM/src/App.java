@@ -1,4 +1,6 @@
 import java.util.Scanner;
+import java.util.concurrent.CompletableFuture;
+
 
 public class App {
 
@@ -15,6 +17,7 @@ public class App {
 
 
 
+
     public static void main(String[] args) throws Exception {
 
 
@@ -23,26 +26,33 @@ public class App {
 
 
         // Create test 3x3 grid
-        WorldPlane testPlane = new WorldPlane(3, 3);
-        testPlane.displayMap();
+        // WorldPlane testPlane = new WorldPlane(3, 3);
+        // testPlane.displayMap();
 
+        Character testDummy = new Character("Dummy");
+
+        // Use CompleteableFuture to run class method asynchronously
+        // This will only run as long as the program does. It will not keep the program running by itself.
+        // A way to wait for the task to finish is to use the .join() command
+        CompletableFuture.runAsync(testDummy::ageUp);
+        
 
         // while (true) {
-        //     System.out.println("Enter Movement:");
-        //     char moveKey = input.next().charAt(0);
-        //     testPlane.movePlayer(moveKey);
-        //     testPlane.displayMap();
-            
+        //     System.out.println("Current Age: "+testDummy.getAge());
+        //     try {
+        //         Thread.sleep(1000);
+        //     } catch (Exception e) {
+        //         // TODO: handle exception
+        //     }
         // }
 
 
-        
-
-
-
 
         
 
+
+
+        
 
 
 

@@ -1,9 +1,10 @@
-public class Character {
+public class Character{
 
 
 
     // Character Attributes
     private String characterName;
+    private int age = 0;
 
 
 
@@ -18,6 +19,24 @@ public class Character {
 
     }
 
+    public void ageUp()
+    {
+        System.out.println("Aging Started...");
+        while (true) {
+            this.age++;
+            // System.out.println(this.age);
+            try {
+                Thread.sleep(1000);
+            } catch (Exception e) {
+                // TODO: handle exception
+            }
+            
+        }
+    }
+    public int getAge()
+    {
+        return this.age;
+    }
 
 
 
