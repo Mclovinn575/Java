@@ -4,6 +4,7 @@ public class Door {
     // private Room nextRoom;
     
     private String doorDirection;
+    public char doorChar = 'D';
 
     public Door(String direction)
     {

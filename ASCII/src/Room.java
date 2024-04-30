@@ -4,16 +4,17 @@ import java.util.HashMap;
 public class Room {
 
     // Cardinal Directions
-    public static String North = "North";
-    public static String East = "East";
-    public static String South = "South";
-    public static String West = "West";
+    public final static String North = "North";
+    public final static String East = "East";
+    public final static String South = "South";
+    public final static String West = "West";
 
-    // Name of Room/Room Type
-    private String roomName;
 
-    // Short description of the room 
-    private String roomDescription;
+    // Define room size and layout
+    private int roomX = 5;
+    private int roomY = 5;
+    char[][] roomLayout = new char[roomX][roomY];
+    private char mapChar = '.';
 
     // Doors in the room
     private HashMap<String, Door> doors;
@@ -26,40 +27,20 @@ public class Room {
 
     // Keep track of the current and next rooms
     private String entryDirection;
+    private String exitDirection;
 
-    // Specifies the chance a door will spawn on one of the cardinal directions
-    public void GenerateDoors()
-    {
-        // Always spawn a door at the entryDirection
-        doors.put(this.entryDirection, new Door(this.entryDirection));
-
-
-        // Currently 25% chance to have a door spawn on each wall
-        // '&&' returns true only if both left and right statements are TRUE
-        if (!this.entryDirection.equals(North) && Math.random() < 0.25) {
-            doors.put(North, new Door(North));
-        }
-        if (!this.entryDirection.equals(East) && Math.random() < 0.25) {
-            doors.put(East, new Door(East));
-        }
-        if (!this.entryDirection.equals(South) && Math.random() < 0.25) {
-            doors.put(South, new Door(South));
-        }
-        if (!this.entryDirection.equals(West) && Math.random() < 0.25) {
-            doors.put(West, new Door(West));
-        }
-        
-    }
 
 
     // +++++++++++++++++++++++++++ MAIN BLUEPRINT +++++++++++++++++++++++++++
-    public Room(String roomName, String roomDescription, String entryDirection)
+    public Room(String entryDirection, String exitDoor)
     {
         this.entryDirection = entryDirection;
-        this.roomName = roomName;
-        this.roomDescription = roomDescription;
+        this.exitDirection = exitDoor;
         this.doors = new HashMap<>();
+        GenerateRoom();
         GenerateDoors();
+
+        
 
     }
     // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -68,30 +49,81 @@ public class Room {
 
 
 
-    // =================================================================  GETTERS AND SETTERS  =================================================================
+    // =================================================================  GENERATORS  =================================================================
 
-    public String getDescription()
+    // Specifies the chance a door will spawn on one of the cardinal directions
+    public void GenerateDoors()
     {
-        return this.roomDescription;
+        // Always spawn a door at the entryDirection
+        doors.put(this.entryDirection, new Door(this.entryDirection));
+        doors.put(this.exitDirection, new Door(this.exitDirection));
+
+
+        
     }
 
-    public String getRoom()
+    public void GenerateRoom()
     {
-        return this.roomName;
+        // Fill area with #
+        for (int i = 0; i < roomLayout.length; i++) {
+            for (int j = 0; j < roomLayout[i].length; j++) {
+                roomLayout[i][j] = mapChar;
+            }
+                
+            
+        }
+
+        // Place 'D' on the cardinal faces (in the middle) depending on entry and exit directions
+        int middle = roomX / 2; // Middle position
+
+        // Handle entry direction if not null
+        if (entryDirection != null) {
+            if (entryDirection.equals(North)) {
+                roomLayout[0][middle] = 'D';
+            } else if (entryDirection.equals(East)) {
+                roomLayout[middle][roomY - 1] = 'D';
+            } else if (entryDirection.equals(South)) {
+                roomLayout[roomX - 1][middle] = 'D';
+            } else if (entryDirection.equals(West)) {
+                roomLayout[middle][0] = 'D';
+            }
+        }
+
+        // Handle exit direction if not null
+        if (exitDirection != null) {
+            if (exitDirection.equals(North)) {
+                roomLayout[0][middle] = 'D';
+            } else if (exitDirection.equals(East)) {
+                roomLayout[middle][roomY - 1] = 'D';
+            } else if (exitDirection.equals(South)) {
+                roomLayout[roomX - 1][middle] = 'D';
+            } else if (exitDirection.equals(West)) {
+                roomLayout[middle][0] = 'D';
+            }
+        }
+
     }
+
+    public void DisplayRoom()
+    {
+        for (int i = 0; i < roomLayout.length; i++) {
+            for (int j = 0; j < roomLayout[i].length; j++) {
+
+                System.out.print(roomLayout[i][j]);
+            }
+            System.out.println();
+        }
+
+    }
+
 
     // =================================================================  EXAMINING ROOM/OBJECTS  =================================================================
 
     // Overall Summary
     public void ExamineRoom()
     {
-
         // Specify which direction character entered from
         System.out.println("=== Entered From: ===\n"+this.entryDirection+"\n");
-
-
-
-
 
         // Specify doors and door direction
         System.out.println("Doors on:");
@@ -99,11 +131,17 @@ public class Room {
             try {
                 System.out.println(door.doorNameDir());
             } catch (Exception e) {
-                // TODO: handle exception
+
             }
         }
+
+        DisplayRoom();
+
+        System.out.println("======================");
         
     }
+
+  
 
 
 
