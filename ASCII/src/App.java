@@ -6,6 +6,13 @@ public class App {
 
     private static Room currentRoom;
 
+    // TODO: Look to add in a HELP option to the menu that will display all the commands available to player.
+
+    // TODO: Add in Player Characters 
+    // TODO: Add in Enemys 
+
+    // TODO: Add in different Player Classes
+    // TODO: Possibly look to have enemys have classes as well. May keep them as 'monsters' 
 
 
     public static void main(String[] args) throws Exception {

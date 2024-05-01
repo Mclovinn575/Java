@@ -12,8 +12,14 @@ public class Room {
     // Define room size and layout
     private int roomX = 5;
     private int roomY = 5;
+    private int playerY = roomY / 2;
+    private int playerX = roomX / 2;
     char[][] roomLayout = new char[roomX][roomY];
+
+
+    // Define map characters
     private char mapChar = '.';
+    private char playerChar = 'X';
 
     // Doors in the room
     private HashMap<String, Door> doors;
@@ -72,6 +78,8 @@ public class Room {
             for (int j = 0; j < roomLayout[i].length; j++) {
                 roomLayout[i][j] = mapChar;
             }
+
+            roomLayout[playerX][playerY] = playerChar;
                 
             
         }
@@ -107,8 +115,9 @@ public class Room {
 
     }
 
-    public void DisplayRoom()
+    private void DisplayRoom()
     {
+       
         for (int i = 0; i < roomLayout.length; i++) {
             for (int j = 0; j < roomLayout[i].length; j++) {
 
@@ -116,6 +125,9 @@ public class Room {
             }
             System.out.println();
         }
+
+        
+
 
     }
 
