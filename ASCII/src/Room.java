@@ -1,13 +1,12 @@
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Room {
 
     // Cardinal Directions
-    public final static String North = "North";
-    public final static String East = "East";
-    public final static String South = "South";
-    public final static String West = "West";
+    public final static String North = "NORTH";
+    public final static String East = "EAST";
+    public final static String South = "SOUTH";
+    public final static String West = "WEST";
 
 
     // Define room size and layout
@@ -18,6 +17,9 @@ public class Room {
 
     // Doors in the room
     private HashMap<String, Door> doors;
+
+    // Adjacent Rooms
+    private HashMap<String, Room> adjacentRooms;
 
     // Items in the room
     // private ArrayList<Items> items;
@@ -37,6 +39,7 @@ public class Room {
         this.entryDirection = entryDirection;
         this.exitDirection = exitDoor;
         this.doors = new HashMap<>();
+        this.adjacentRooms = new HashMap<>();
         GenerateRoom();
         GenerateDoors();
 
@@ -125,15 +128,15 @@ public class Room {
         // Specify which direction character entered from
         System.out.println("=== Entered From: ===\n"+this.entryDirection+"\n");
 
-        // Specify doors and door direction
-        System.out.println("Doors on:");
-        for (Door door : doors.values()) {
-            try {
-                System.out.println(door.doorNameDir());
-            } catch (Exception e) {
+        // // Specify doors and door direction
+        // System.out.println("Doors on:");
+        // for (Door door : doors.values()) {
+        //     try {
+        //         System.out.println(door.doorNameDir());
+        //     } catch (Exception e) {
 
-            }
-        }
+        //     }
+        // }
 
         DisplayRoom();
 
@@ -141,16 +144,17 @@ public class Room {
         
     }
 
+        // Method to set the adjacent room in a specific direction
+        public void setAdjacentRoom(String direction, Room room) {
+
+            adjacentRooms.put(direction, room);
+        }
+
+        public Room getAdjacentRoom(String direction) {
+
+            return adjacentRooms.get(direction);
+        }
   
-
-
-
-
-
-
-
-
-
     }
 
 
