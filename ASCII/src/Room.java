@@ -31,11 +31,13 @@ public class Room {
     // private ArrayList<Items> items;
 
     // Enemies in the room
-    // private ArrayList<Enemies> enemies;
+    public int enemyCount;
+    public boolean hasEnemy;
 
     // Keep track of the current and next rooms
     private String entryDirection;
     private String exitDirection;
+    public Character enemyCharacter;
 
 
 
@@ -46,6 +48,7 @@ public class Room {
         this.exitDirection = exitDoor;
         this.doors = new HashMap<>();
         this.adjacentRooms = new HashMap<>();
+       
         GenerateRoom();
         GenerateDoors();
 
@@ -113,6 +116,8 @@ public class Room {
             }
         }
 
+        this.enemyCharacter = new Character("Goblin", Weapon.sword);
+
     }
 
     private void DisplayRoom()
@@ -139,16 +144,20 @@ public class Room {
     {
         // Specify which direction character entered from
         System.out.println("=== Entered From: ===\n"+this.entryDirection+"\n");
+        
+        // For debugging
+        if (this.enemyCharacter != null) {
+            this.hasEnemy = true;
+        }else{
+            this.hasEnemy = false;
+        }
 
-        // // Specify doors and door direction
-        // System.out.println("Doors on:");
-        // for (Door door : doors.values()) {
-        //     try {
-        //         System.out.println(door.doorNameDir());
-        //     } catch (Exception e) {
-
-        //     }
-        // }
+        // Specify Enemies
+        try {
+            System.out.println("=== Enemies: ===\n"+this.enemyCharacter.getName()+" | "+this.enemyCharacter.currentHP+"/"+this.enemyCharacter.maxHP);
+        } catch (Exception e) {
+            // TODO: handle exception
+        }
 
         DisplayRoom();
 
@@ -156,18 +165,25 @@ public class Room {
         
     }
 
-        // Method to set the adjacent room in a specific direction
-        public void setAdjacentRoom(String direction, Room room) {
+    // Method to set the adjacent room in a specific direction
+    public void setAdjacentRoom(String direction, Room room) {
 
-            adjacentRooms.put(direction, room);
-        }
-
-        public Room getAdjacentRoom(String direction) {
-
-            return adjacentRooms.get(direction);
-        }
-  
+        adjacentRooms.put(direction, room);
     }
+
+    public Room getAdjacentRoom(String direction) {
+
+        return adjacentRooms.get(direction);
+    }
+
+    public String getEnemy()
+    {
+        return this.enemyCharacter.getName();
+    }
+
+
+
+}
 
 
     

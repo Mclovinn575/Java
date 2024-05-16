@@ -6,6 +6,7 @@ public class App {
 
     private static Room currentRoom;
 
+
     // TODO: Look to add in a HELP option to the menu that will display all the commands available to player.
 
     // TODO: Add in Player Characters 
@@ -19,6 +20,12 @@ public class App {
 
         clearScreen();
 
+
+        
+        // Create the player character
+        Character playerCharacter = new Character("Player", Weapon.sword);
+
+
         // represet a 2x2 Grid of rooms
         // X->X
         //    |
@@ -27,7 +34,7 @@ public class App {
         Room room1 = new Room(Room.West, Room.East);
         Room room2 = new Room(Room.West, Room.South);
         Room room3 = new Room(Room.North, Room.West);
-        Room room4 = new Room(Room.South, null);
+        Room room4 = new Room(Room.East, null);
 
         // Connect rooms...
         room1.setAdjacentRoom(Room.East, room2);
@@ -35,39 +42,60 @@ public class App {
         room2.setAdjacentRoom(Room.South, room3);
         room3.setAdjacentRoom(Room.North, room2);
         room3.setAdjacentRoom(Room.West, room4);
-        room4.setAdjacentRoom(Room.South, room3);
+        room4.setAdjacentRoom(Room.East, room3);
 
         // Set initial room...
         currentRoom = room1;
 
-    // Test Game Loop
-    while (true) {
+        
+
+        // Test Game Loop
+        while (true) {
             clearScreen();
             currentRoom.ExamineRoom();
             
             // Get user input
             Console console = System.console();
-            String input = console.readLine("Enter direction (NORTH, EAST, SOUTH, WEST) to move or 'quit' to exit: ").toUpperCase();
+            String input = console.readLine("Enter ACTION/DIRECTION or 'quit' to exit: ").toUpperCase();
 
             // Check for user input to move or quit
             if (input.equals("QUIT")) {
                 break;
-            } else {
+            } 
+            if (input.equals("ATTACK")) {
+
+                playerCharacter.Attack(currentRoom.enemyCharacter);
+                if (currentRoom.enemyCharacter.currentHP <= 0) {
+                    currentRoom.enemyCharacter = null;
+                }
+
+                
+                
+            }
+            else {
+                // If enemy is in the room do not allow the user to proceed
+                if (currentRoom.hasEnemy == true) {
+                    System.out.println("You cannot proceed... A monster blocks the way!");
+                    console.readLine("Press Enter to continue...");
+                    continue;
+                    
+                }
+                
                 // Try to move to the adjacent room
                 Room nextRoom = currentRoom.getAdjacentRoom(input);
                 if (nextRoom != null) {
                     currentRoom = nextRoom;
-                    if (currentRoom == room1) {
-                        System.out.println("FINAL ROOM!!!");
+                    if (currentRoom == room4) {
+                        System.out.println("\nFINAL ROOM!!!");
+                        System.console().readLine();
                     }
                 } else {
                     System.out.println("You cannot move in that direction.");
-
-                    // For debugging correct direction
-                    // System.out.println(input);
-
                     console.readLine("Press Enter to continue...");
                 }
+
+               
+
             }
         }
     }
