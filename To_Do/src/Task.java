@@ -20,4 +20,19 @@ public class Task {
     public String getTaskBody()
     {return this.taskBody;}
 
+    public void setTaskTitle(String newTitle)
+    {
+        this.taskTitle = newTitle;
+    }
+
+    public void setTaskBody(String newBody)
+    {
+        this.taskBody = newBody;
+    }
+
+    @Override
+    public String toString() {
+        return taskTitle;
+    }
+
 }
