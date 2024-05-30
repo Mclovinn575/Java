@@ -1,21 +1,90 @@
 import java.awt.Container;
 import java.awt.Dimension;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.PrintWriter;
 
-import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.DefaultListModel;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JList;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.ListModel;
 import javax.swing.ListSelectionModel;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class App {
+
+    // Save Tasks to File Method
+    private static void saveFile(DefaultListModel<Task> listModel) {
+        JFileChooser fileChooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Text files", "txt");
+        fileChooser.setFileFilter(filter);
+        
+        int result = fileChooser.showSaveDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            try (PrintWriter writer = new PrintWriter(fileChooser.getSelectedFile() + ".txt")) {
+                System.out.println("Attempting to save tasks");
+                for (int i = 0; i < listModel.getSize(); i++) {
+                    Task task = listModel.getElementAt(i);
+                    writer.println(task.getTaskTitle());
+                    writer.println(task.getTaskBody());
+                }
+            } 
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    // Load Tasks from File Method
+    private static void loadFile(DefaultListModel<Task> listModel)
+    {
+        // Create the file Chooser / set filters
+        JFileChooser fileChooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Text files", "txt");
+        fileChooser.setFileFilter(filter);
+
+        int result = fileChooser.showOpenDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(fileChooser.getSelectedFile()))){
+                listModel.clear();
+                String line;
+                while ((line = reader.readLine()) != null)
+                {
+                    String title = line;
+                    String Body = reader.readLine();
+                    listModel.addElement(new Task(title, Body));
+                }
+            }catch(Exception e){
+                e.printStackTrace();
+
+            }
+            
+        }
+        // try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
+        //     String line;
+        //     while ((line = reader.readLine()) != null)
+        //     {
+        //         String title = line;
+        //         String body = reader.readLine();
+        //         listModel.addElement(new Task(title, body));
+             
+        //     }
+        // } catch (Exception e) {
+        //     // TODO: handle exception
+        // }
+    }
+
+    
 
 
     public static void main(String[] args) throws Exception {
@@ -41,6 +110,26 @@ public class App {
 
         // Create the Pane to hold the list of notes
         JPanel savedTasks_Pane = new JPanel();
+
+        // Create a MenuBar to hold menuItems
+        JMenuBar menuBar = new JMenuBar();
+        // TODO: Currently not aligning properly
+        menuBar.setAlignmentX(JMenuBar.LEFT_ALIGNMENT);
+        JMenu rootMenu = new JMenu("FILE");
+        JMenuItem savingItem = new JMenuItem("SAVE");
+        JMenuItem loadingItem = new JMenuItem("LOAD");
+        JMenuItem closingItem = new JMenuItem("EXIT");
+        closingItem.addActionListener(clicked -> {
+            System.exit(0);
+        });
+
+        
+        rootMenu.add(savingItem);
+        rootMenu.add(loadingItem);
+        rootMenu.add(closingItem);
+        menuBar.add(rootMenu);
+        frame.add(menuBar);
+
 
         // Create the list holding the tasks data
         DefaultListModel<Task> listModel = new DefaultListModel<>();
@@ -80,6 +169,9 @@ public class App {
             }
 
         });
+
+        
+        
 
         // Allow User to Open and edit notes
         JButton editTask_Button = new JButton("Open Task");
@@ -123,6 +215,15 @@ public class App {
             System.out.println("Deleted Task: "+currentTask.getTaskTitle());
         });
 
+        savingItem.addActionListener(saved -> {
+            saveFile(listModel);
+        });
+
+        loadingItem.addActionListener(loaded -> {
+            
+            loadFile(listModel);
+        });
+        
 
         // Add buttons to the control pane
         taskControls_Pane.add(addTask_Button);
