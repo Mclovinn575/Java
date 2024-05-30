@@ -23,66 +23,13 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class App {
 
-    // Save Tasks to File Method
-    private static void saveFile(DefaultListModel<Task> listModel) {
-        JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Text files", "txt");
-        fileChooser.setFileFilter(filter);
-        
-        int result = fileChooser.showSaveDialog(null);
-        if (result == JFileChooser.APPROVE_OPTION) {
-            try (PrintWriter writer = new PrintWriter(fileChooser.getSelectedFile() + ".txt")) {
-                System.out.println("Attempting to save tasks");
-                for (int i = 0; i < listModel.getSize(); i++) {
-                    Task task = listModel.getElementAt(i);
-                    writer.println(task.getTaskTitle());
-                    writer.println(task.getTaskBody());
-                }
-            } 
-            catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
+    /* TODO:
 
-    // Load Tasks from File Method
-    private static void loadFile(DefaultListModel<Task> listModel)
-    {
-        // Create the file Chooser / set filters
-        JFileChooser fileChooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter("Text files", "txt");
-        fileChooser.setFileFilter(filter);
+    - Right click popup menu functionality
+    - Double click to edit functionality
 
-        int result = fileChooser.showOpenDialog(null);
-        if (result == JFileChooser.APPROVE_OPTION) {
-            try (BufferedReader reader = new BufferedReader(new FileReader(fileChooser.getSelectedFile()))){
-                listModel.clear();
-                String line;
-                while ((line = reader.readLine()) != null)
-                {
-                    String title = line;
-                    String Body = reader.readLine();
-                    listModel.addElement(new Task(title, Body));
-                }
-            }catch(Exception e){
-                e.printStackTrace();
-
-            }
-            
-        }
-        // try (BufferedReader reader = new BufferedReader(new FileReader(FILE_NAME))) {
-        //     String line;
-        //     while ((line = reader.readLine()) != null)
-        //     {
-        //         String title = line;
-        //         String body = reader.readLine();
-        //         listModel.addElement(new Task(title, body));
-             
-        //     }
-        // } catch (Exception e) {
-        //     // TODO: handle exception
-        // }
-    }
+    */
+    
 
     
 
@@ -243,5 +190,58 @@ public class App {
         frame.setVisible(true);
       
 
+    }
+
+    // ===== METHODS =====
+
+
+    // Save Tasks to File Method
+    private static void saveFile(DefaultListModel<Task> listModel) {
+        JFileChooser fileChooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Text files", "txt");
+        fileChooser.setFileFilter(filter);
+        
+        int result = fileChooser.showSaveDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            try (PrintWriter writer = new PrintWriter(fileChooser.getSelectedFile() + ".txt")) {
+                System.out.println("Attempting to save tasks");
+                for (int i = 0; i < listModel.getSize(); i++) {
+                    Task task = listModel.getElementAt(i);
+                    writer.println(task.getTaskTitle());
+                    writer.println(task.getTaskBody());
+                }
+            } 
+            catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    // Load Tasks from File Method
+    private static void loadFile(DefaultListModel<Task> listModel)
+    {
+        // Create the file Chooser / set filters
+        JFileChooser fileChooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Text files", "txt");
+        fileChooser.setFileFilter(filter);
+
+        int result = fileChooser.showOpenDialog(null);
+        if (result == JFileChooser.APPROVE_OPTION) {
+            try (BufferedReader reader = new BufferedReader(new FileReader(fileChooser.getSelectedFile()))){
+                listModel.clear();
+                String line;
+                while ((line = reader.readLine()) != null)
+                {
+                    String title = line;
+                    String Body = reader.readLine();
+                    listModel.addElement(new Task(title, Body));
+                }
+            }catch(Exception e){
+                e.printStackTrace();
+
+            }
+            
+        }
+    
     }
 }
